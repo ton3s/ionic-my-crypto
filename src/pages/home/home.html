@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>
+      My Crypto
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-content class="main-card">
+      <div class="main-card-title">{{ getTotalBalance("USD") | currency }}
+        <p>{{ getTotalBalance("BTC") | number: "1.0-2" }} BTC</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-card *ngFor="let holding of holdings">
+      <button ion-item detail-none>
+        <ion-avatar item-start>
+          <img [src]="getIconImage(holding)">
+        </ion-avatar>
+        {{ holding.quote.name }}
+        <p>
+          {{ holding.amount }} {{ holding.quote.symbol }} ({{ holding.quote.quotes.USD.price * holding.amount | currency }})
+        </p>
+        <span item-end>{{ holding.quote.quotes.USD.price | currency }}</span>
+      </button>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
