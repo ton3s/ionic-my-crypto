@@ -33,4 +33,8 @@ export class HomePage {
     return this.holdings.length > 0 ? this.holdings.reduce((amount, holding: IHolding) => amount + holding.quote.quotes[currency].price * holding.amount, 0) : 0;
   }
 
+  addCoin() {
+    this.navCtrl.push('AddHoldingPage');
+  }
+
 }

@@ -10,7 +10,7 @@
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="addCoin()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -41,7 +41,7 @@
           {{ holding.amount }} {{ holding.quote.symbol }} (<ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price * holding.amount | number: "1.0-2" }})
         </p>
         <span *ngIf="isDisplayFiat || holding.symbol === 'BTC'" item-end>{{ holding.quote.quotes.USD.price | currency }}</span>
-        <span *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'" item-end><ion-icon class="btc-icon-large" name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price | number: "1.0-9" }}</span>
+        <span *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'" item-end><ion-icon class="btc-icon-large" name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price | number: "1.0-8" }}</span>
       </button>
     </ion-card>
   </ion-list>

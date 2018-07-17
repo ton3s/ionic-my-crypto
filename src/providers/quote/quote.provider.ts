@@ -12,15 +12,36 @@ import {IHolding} from "../holdings/holdings.interface";
 @Injectable()
 export class QuoteProvider {
 
+  public listings: IListing[];
+
   constructor(public http: HttpClient) {
   }
 
   // Get a list of all cryptocurrency listings.
   getListings(): Promise<IListing[]> {
-    let apiURL = `https://api.coinmarketcap.com/v2/listings/`;
-    return this.http.get(apiURL)
-      .map((res: any) => res.data)
-      .toPromise();
+    return new Promise((resolve, reject) => {
+      if (this.listings) resolve(this.listings);
+      let apiURL = `https://api.coinmarketcap.com/v2/listings/`;
+      this.http.get(apiURL)
+        .map((res: any) => res.data)
+        .toPromise()
+        .then(listings => resolve(listings))
+        .catch(reject);
+    });
+  }
+
+  filterListings(searchTerm): Promise<IListing[]> {
+    return new Promise((resolve, reject) => {
+      this.getListings()
+        .then(listings => {
+          let filteredListings = listings.filter((listing: IListing) => {
+            return listing.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              listing.symbol.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+          });
+          resolve(filteredListings);
+        })
+        .catch(reject);
+    })
   }
 
   getQuotes(holdings: IHolding[]): Promise<IQuote[]> {
