@@ -11,7 +11,7 @@
     </ion-buttons>
     <ion-buttons end>
       <button ion-button icon-only (click)="addCoin()">
-        <ion-icon name="add"></ion-icon>
+        <ion-icon name="add-circle-outline"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -27,7 +27,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
+  <ion-list *ngIf="holdings.length > 0">
     <ion-card *ngFor="let holding of holdings">
       <ion-item-sliding>
         <button ion-item detail-none>
@@ -56,7 +56,13 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-card>
-
   </ion-list>
+
+  <ion-card *ngIf="holdings.length === 0" (click)="addCoin()">
+    <ion-card-content class="add-coin">
+      <ion-icon class="add-coin-icon" name="add-circle-outline"></ion-icon>
+      <div>Add Coins To Track</div>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

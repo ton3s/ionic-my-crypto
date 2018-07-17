@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {UtilityProvider} from "../../providers/utility/utility.provider";
 import {IListing, IQuote} from "../../providers/quote/quote.interface";
 import {QuoteProvider} from "../../providers/quote/quote.provider";
+import {HomePage} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class SelectCoinPage {
   }
 
   ionViewDidLoad() {
+    if (!this.navCtrl.canGoBack()) this.backToHomePage();
     this.utilityProvider.displayLoading();
     setTimeout(() => this.setFilteredItems(), 350);
   }
@@ -35,5 +37,10 @@ export class SelectCoinPage {
 
   addCoinDetails(listing: IListing) {
     this.navCtrl.push('AddHoldingPage', {listing});
+  }
+
+  backToHomePage() {
+    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.popToRoot();
   }
 }

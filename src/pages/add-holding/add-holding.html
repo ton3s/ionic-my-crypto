@@ -13,22 +13,27 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header>{{ listing.name }} : {{ listing.symbol }}</ion-card-header>
+    <ion-item>
+      {{ listing?.name }} : {{ listing?.symbol }}
+      <img class="coin-logo" *ngIf="listing" [src]="getIconImage(listing.id)" item-end>
+    </ion-item>
   </ion-card>
   <ion-card>
     <ion-list>
       <form id="holding-form" [formGroup]="form" (submit)="saveCoin()" novalidate>
-      <ion-item>
-        <ion-label stacked>Amount</ion-label>
-        <ion-input type="number" placeholder="Enter Quantity"
-                   formControlName="amount"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>Trade Price</ion-label>
-        <ion-input type="number" [value]="quote?.quotes.BTC.price | number: '1.0-8'"
-                   placeholder="Enter Price"
-                   formControlName="price"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label stacked>Amount</ion-label>
+          <ion-input type="number" placeholder="Enter Quantity"
+                     formControlName="amount"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Trade Price
+            <ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>
+          </ion-label>
+          <ion-input type="number" [value]="quote?.quotes.BTC.price | number: '1.0-8'"
+                     placeholder="Enter Price"
+                     formControlName="price"></ion-input>
+        </ion-item>
       </form>
     </ion-list>
   </ion-card>

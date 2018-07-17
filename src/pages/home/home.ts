@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {IonicPage, NavController} from 'ionic-angular';
 import {QuoteProvider} from "../../providers/quote/quote.provider";
 import {HoldingsProvider} from "../../providers/holdings/holdings.provider";
 import {IQuote} from "../../providers/quote/quote.interface";

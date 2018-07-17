@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HoldingsProvider} from "../../providers/holdings/holdings.provider";
 import {default as swal} from 'sweetalert2';
 import {UtilityProvider} from "../../providers/utility/utility.provider";
+import {HomePage} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -14,7 +15,7 @@ import {UtilityProvider} from "../../providers/utility/utility.provider";
 })
 export class AddHoldingPage {
 
-  listing: IListing;
+  listing: IListing = null;
   quote: IQuote;
   form: FormGroup;
 
@@ -30,7 +31,9 @@ export class AddHoldingPage {
     this.form = formBuilder.group({
       amount: ['', Validators.required],
       price: ['', Validators.required]
-    })
+    });
+
+    if (!navCtrl.canGoBack()) this.backToHomePage();
   }
 
   ionViewDidLoad() {
@@ -38,6 +41,7 @@ export class AddHoldingPage {
   }
 
   loadQuote() {
+    if (!this.navCtrl.canGoBack()) return;
     this.quoteProvider.getQuote(this.listing.id)
       .then((quote: IQuote) => {
         this.quote = quote;
@@ -65,6 +69,15 @@ export class AddHoldingPage {
         this.navCtrl.popToRoot();
       });
     });
+  }
+
+  backToHomePage() {
+    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.popToRoot();
+  }
+
+  getIconImage(id: number): string {
+    return this.quoteProvider.getIcon(id, 64);
   }
 
 }
