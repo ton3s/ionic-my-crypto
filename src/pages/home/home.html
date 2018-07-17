@@ -3,6 +3,12 @@
     <ion-title>
       My Crypto
     </ion-title>
+    <ion-buttons>
+      <button ion-button icon-only (click)="toggleDisplay()">
+        <ion-icon *ngIf="isDisplayFiat" name="logo-usd"></ion-icon>
+        <ion-icon *ngIf="!isDisplayFiat" name="logo-bitcoin"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="add"></ion-icon>
@@ -13,7 +19,7 @@
 
 <ion-content padding>
 
-  <ion-card>
+  <ion-card (click)="toggleDisplay()">
     <ion-card-content class="main-card">
       <div class="main-card-title">{{ getTotalBalance("USD") | currency }}
         <p>{{ getTotalBalance("BTC") | number: "1.0-2" }} BTC</p>
@@ -28,10 +34,14 @@
           <img [src]="getIconImage(holding)">
         </ion-avatar>
         {{ holding.quote.name }}
-        <p>
+        <p class="coin-description" *ngIf="isDisplayFiat || holding.symbol === 'BTC'">
           {{ holding.amount }} {{ holding.quote.symbol }} ({{ holding.quote.quotes.USD.price * holding.amount | currency }})
         </p>
-        <span item-end>{{ holding.quote.quotes.USD.price | currency }}</span>
+        <p class="coin-description" *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'">
+          {{ holding.amount }} {{ holding.quote.symbol }} (<ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price * holding.amount | number: "1.0-2" }})
+        </p>
+        <span *ngIf="isDisplayFiat || holding.symbol === 'BTC'" item-end>{{ holding.quote.quotes.USD.price | currency }}</span>
+        <span *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'" item-end><ion-icon class="btc-icon-large" name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price | number: "1.0-9" }}</span>
       </button>
     </ion-card>
   </ion-list>

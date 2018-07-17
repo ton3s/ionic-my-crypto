@@ -12,12 +12,17 @@ import {IHolding} from "../../providers/holdings/holdings.interface";
 export class HomePage {
 
   holdings: IHolding[] = [];
+  isDisplayFiat: boolean = false;
 
   constructor(public navCtrl: NavController,
               public holdingsProvider: HoldingsProvider,
               public quoteProvider: QuoteProvider) {
 
     holdingsProvider.loadHoldings().then(holdings => this.holdings = holdings);
+  }
+
+  toggleDisplay() {
+    this.isDisplayFiat = !this.isDisplayFiat;
   }
 
   getIconImage(holding: IHolding): string {
