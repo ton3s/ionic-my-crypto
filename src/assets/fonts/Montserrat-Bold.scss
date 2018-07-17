@@ -1,0 +1,8 @@
+$Montserrat-Bold-font-path: $font-path !default;
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto"), local("Roboto"), url("../assets/fonts/Montserrat-Bold.ttf") format("truetype"), url("../assets/fonts/Montserrat-Bold.woff") format("woff");
+}

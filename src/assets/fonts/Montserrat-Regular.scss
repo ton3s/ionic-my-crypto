@@ -1,0 +1,8 @@
+$Montserrat-Regular-font-path: $font-path !default;
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto"), local("Roboto"), url("../assets/fonts/Montserrat-Regular.ttf") format("truetype"), url("../assets/fonts/Montserrat-Regular.woff") format("woff");
+}

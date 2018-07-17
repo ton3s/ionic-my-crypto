@@ -1,0 +1,8 @@
+$LemonMilk-font-path: $font-path !default;
+
+@font-face {
+  font-family: "Montserrat-Medium";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto"), local("Roboto"), url("../assets/fonts/Montserrat-Medium.ttf") format("truetype"), url("../assets/fonts/Montserrat-Medium.woff") format("woff");
+}

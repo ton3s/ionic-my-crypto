@@ -89,7 +89,9 @@ $colors: (
 
 @font-face {
   font-family: Montserrat;
-  src: url('../assets/fonts/montserrat.woff2');
+  src: url('../assets/fonts/Montserrat-Regular.woff2') format('woff2'),
+      url('../assets/fonts/Montserrat-Regular.woff') format('woff'),
+      url('../assets/fonts/Montserrat-Regular.ttf')  format('truetype')
 }
 
 $font-family-base: Montserrat;

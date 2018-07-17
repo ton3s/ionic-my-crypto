@@ -27,16 +27,17 @@ export class HoldingsProvider {
 
   saveHoldings(holdings: IHolding[]): Promise<IHolding[]> {
     return new Promise((resolve, reject) => {
-      this.storage.set('holdings', holdings).catch(reject);
-      resolve(holdings);
+      this.storage.set('holdings', holdings)
+        .then(_ => resolve(holdings))
+        .catch(reject);
     });
   }
 
   loadHoldings() {
     return new Promise((resolve, reject) => {
       this.storage.get('holdings').then(holdings => {
-        this.holdings = holdings;
         if (holdings !== null) {
+          this.holdings = holdings;
           this.fetchPrices().then(holdings => resolve(holdings)).catch(reject);
         }
       }).catch(reject);

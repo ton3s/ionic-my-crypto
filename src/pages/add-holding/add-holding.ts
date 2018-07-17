@@ -7,6 +7,7 @@ import {HoldingsProvider} from "../../providers/holdings/holdings.provider";
 import {default as swal} from 'sweetalert2';
 import {UtilityProvider} from "../../providers/utility/utility.provider";
 import {HomePage} from "../home/home";
+import {IHolding} from "../../providers/holdings/holdings.interface";
 
 @IonicPage()
 @Component({
@@ -58,15 +59,15 @@ export class AddHoldingPage {
       allowOutsideClick: false
     }).then(_ => {
       this.utilityProvider.displayLoading();
-      this.holdingProvider.addHolding({
+      let holding: IHolding = {
         id: this.listing.id,
         symbol: this.listing.symbol,
         currency: 'USD',
         amount: this.form.value.amount,
         price: this.form.value.price
-      }).then(_ => {
-        this.utilityProvider.dismissLoading();
-        this.navCtrl.popToRoot();
+      };
+      this.holdingProvider.addHolding(holding).then(_ => {
+        this.utilityProvider.dismissLoading(() => this.navCtrl.popToRoot());
       });
     });
   }

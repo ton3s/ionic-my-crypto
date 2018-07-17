@@ -19,7 +19,8 @@ export class HomePage {
               public quoteProvider: QuoteProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter");
     this.holdingsProvider.loadHoldings().then((holdings: IHolding[]) => this.holdings = holdings);
   }
 

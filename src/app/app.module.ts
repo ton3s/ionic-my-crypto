@@ -33,7 +33,8 @@ import {firebaseConfig} from './firebase.config';
     BrowserModule,
     ReactiveFormsModule,
     IonicModule.forRoot(MyApp, {
-      preloadModules: true
+      preloadModules: true,
+      mode: 'ios'
     }),
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
