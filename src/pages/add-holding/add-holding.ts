@@ -1,7 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, Loading, LoadingController, NavController, NavParams} from 'ionic-angular';
-import {IListing} from "../../providers/quote/quote.interface";
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IListing, IQuote} from "../../providers/quote/quote.interface";
 import {QuoteProvider} from "../../providers/quote/quote.provider";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HoldingsProvider} from "../../providers/holdings/holdings.provider";
+import {default as swal} from 'sweetalert2';
+import {UtilityProvider} from "../../providers/utility/utility.provider";
 
 @IonicPage()
 @Component({
@@ -10,43 +14,57 @@ import {QuoteProvider} from "../../providers/quote/quote.provider";
 })
 export class AddHoldingPage {
 
-  searchTerm: string = '';
-  listings: IListing[];
-  public loading: Loading;
+  listing: IListing;
+  quote: IQuote;
+  form: FormGroup;
 
   constructor(public navCtrl: NavController,
+              public formBuilder: FormBuilder,
               public navParams: NavParams,
-              public loadingCtrl: LoadingController,
-              public quoteProvider: QuoteProvider) {
+              public quoteProvider: QuoteProvider,
+              public holdingProvider: HoldingsProvider,
+              public utilityProvider: UtilityProvider) {
+
+    this.listing = this.navParams.get('listing');
+
+    this.form = formBuilder.group({
+      amount: ['', Validators.required],
+      price: ['', Validators.required]
+    })
   }
 
   ionViewDidLoad() {
-    this.displayLoading();
-    setTimeout(() => this.setFilteredItems(), 350);
+    setTimeout(() => this.loadQuote(), 500);
   }
 
-  setFilteredItems() {
-    this.quoteProvider.filterListings(this.searchTerm)
-      .then((listings: IListing[]) => {
-        this.listings = listings;
-        this.dismissLoading();
+  loadQuote() {
+    this.quoteProvider.getQuote(this.listing.id)
+      .then((quote: IQuote) => {
+        this.quote = quote;
       });
   }
 
-  // Loading Controller
-  displayLoading() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent'
+  saveCoin() {
+    swal({
+      title: `Coin Added!`,
+      html: `${this.listing.name} was added to your portfolio!`,
+      type: "success",
+      confirmButtonColor: '#337ae4',
+      confirmButtonText: 'Awesome!',
+      allowOutsideClick: false
+    }).then(_ => {
+      this.utilityProvider.displayLoading();
+      this.holdingProvider.addHolding({
+        id: this.listing.id,
+        symbol: this.listing.symbol,
+        currency: 'USD',
+        amount: this.form.value.amount,
+        price: this.form.value.price
+      }).then(_ => {
+        this.utilityProvider.dismissLoading();
+        this.navCtrl.popToRoot();
+      });
     });
-    this.loading.present();
-  }
-
-  dismissLoading(callback = () => {
-  }) {
-    if (this.loading) {
-      this.loading.dismiss();
-      this.loading.onDidDismiss(callback)
-    }
   }
 
 }

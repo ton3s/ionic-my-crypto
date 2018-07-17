@@ -45,12 +45,12 @@ export class QuoteProvider {
   }
 
   getQuotes(holdings: IHolding[]): Promise<IQuote[]> {
-    return Promise.all(holdings.map(holding => this.getQuote(holding)));
+    return Promise.all(holdings.map(holding => this.getQuote(holding.id)));
   }
 
   // Get the ticker data for a specific cryptocurrency.
-  getQuote(holding: IHolding): Promise<IQuote> {
-    let apiURL = `https://api.coinmarketcap.com/v2/ticker/${holding.id}/?convert=BTC`;
+  getQuote(id: number): Promise<IQuote> {
+    let apiURL = `https://api.coinmarketcap.com/v2/ticker/${id}/?convert=BTC`;
     return this.http.get(apiURL)
       .map((res: any) => res.data)
       .toPromise();
@@ -59,8 +59,8 @@ export class QuoteProvider {
   // Get the image url for a coin given a CMC id.
   // https://s2.coinmarketcap.com/static/img/coins/64x64/1808.png
   // size: 32 | 64
-  getIcon(holding: IHolding, size: number): string {
-    return `https://s2.coinmarketcap.com/static/img/coins/${size}x${size}/${holding.id}.png`
+  getIcon(id: number, size: number): string {
+    return `https://s2.coinmarketcap.com/static/img/coins/${size}x${size}/${id}.png`
   }
 
 }

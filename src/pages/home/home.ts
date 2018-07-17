@@ -17,8 +17,10 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public holdingsProvider: HoldingsProvider,
               public quoteProvider: QuoteProvider) {
+  }
 
-    holdingsProvider.loadHoldings().then(holdings => this.holdings = holdings);
+  ionViewDidLoad() {
+    this.holdingsProvider.loadHoldings().then((holdings: IHolding[]) => this.holdings = holdings);
   }
 
   toggleDisplay() {
@@ -26,7 +28,7 @@ export class HomePage {
   }
 
   getIconImage(holding: IHolding): string {
-    return this.quoteProvider.getIcon(holding, 64);
+    return this.quoteProvider.getIcon(holding.id, 64);
   }
 
   getTotalBalance(currency: string): number {
@@ -34,7 +36,11 @@ export class HomePage {
   }
 
   addCoin() {
-    this.navCtrl.push('AddHoldingPage');
+    this.navCtrl.push('SelectCoinPage');
+  }
+
+  deleteCoin(holding: IHolding) {
+    this.holdingsProvider.removeHolding(holding).then((holdings: IHolding[]) => this.holdings = holdings);
   }
 
 }

@@ -8,53 +8,39 @@ import {IQuote} from "../quote/quote.interface";
 @Injectable()
 export class HoldingsProvider {
 
-  public holdings: IHolding[] = [
-    {
-      id: 1,
-      symbol: 'BTC',
-      currency: 'USD',
-      amount: 100
-    },
-    {
-      id: 1619,
-      symbol: 'SKY',
-      currency: 'USD',
-      amount: 10000
-    },
-    {
-      id: 1737,
-      symbol: 'XEL',
-      currency: 'USD',
-      amount: 500000
-    }
-  ];
+  public holdings: IHolding[] = [];
 
   constructor(public http: HttpClient,
               public storage: Storage,
               public quoteProvider: QuoteProvider) {
   }
 
-  addHolding(holding: IHolding): void {
+  addHolding(holding: IHolding): Promise<IHolding[]> {
     this.holdings.push(holding);
-    this.saveHoldings();
+    return this.fetchPrices().then(holdings => this.saveHoldings(holdings));
   }
 
-  removeHolding(holding: IHolding): void {
+  removeHolding(holding: IHolding): Promise<IHolding[]> {
     this.holdings.splice(this.holdings.indexOf(holding), 1);
-    this.saveHoldings();
+    return this.fetchPrices().then(holdings => this.saveHoldings(holdings));
   }
 
-  saveHoldings(): void {
-    this.storage.set('holdings', this.holdings);
+  saveHoldings(holdings: IHolding[]): Promise<IHolding[]> {
+    return new Promise((resolve, reject) => {
+      this.storage.set('holdings', holdings).catch(reject);
+      resolve(holdings);
+    });
   }
 
-  loadHoldings(): Promise<IHolding[]> {
-    // this.storage.get('holdings').then(holdings => {
-    //   if (holdings !== null) {
-    //     this.holdings = holdings;
-    //   }
-    // });
-    return this.fetchPrices();
+  loadHoldings() {
+    return new Promise((resolve, reject) => {
+      this.storage.get('holdings').then(holdings => {
+        this.holdings = holdings;
+        if (holdings !== null) {
+          this.fetchPrices().then(holdings => resolve(holdings)).catch(reject);
+        }
+      }).catch(reject);
+    })
   }
 
   fetchPrices(): Promise<IHolding[]> {
@@ -63,12 +49,11 @@ export class HoldingsProvider {
         .then(quotes => {
           quotes.forEach((quote: IQuote, index) => {
             this.holdings[index].quote = quote;
-            resolve(this.holdings);
           });
+          resolve(this.holdings);
         })
         .catch(reject);
     })
-
   }
 
 }

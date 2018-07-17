@@ -6,4 +6,5 @@ export interface IHolding {
   currency: string;
   amount: number;
   quote?: IQuote;
+  price?: number;
 }

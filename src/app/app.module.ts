@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {IonicStorageModule} from '@ionic/storage';
 import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from '@angular/forms';
 
 // Pages.
 import {MyApp} from './app.component';
@@ -13,6 +14,7 @@ import {HomePage} from '../pages/home/home';
 // Providers
 import {QuoteProvider} from '../providers/quote/quote.provider';
 import {HoldingsProvider} from '../providers/holdings/holdings.provider';
+import {UtilityProvider} from '../providers/utility/utility.provider';
 
 // Firebase
 import {AngularFireModule} from 'angularfire2';
@@ -29,6 +31,7 @@ import {firebaseConfig} from './firebase.config';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp, {
       preloadModules: true
     }),
@@ -48,7 +51,8 @@ import {firebaseConfig} from './firebase.config';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuoteProvider,
-    HoldingsProvider
+    HoldingsProvider,
+    UtilityProvider
   ]
 })
 export class AppModule {

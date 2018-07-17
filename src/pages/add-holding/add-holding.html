@@ -1,20 +1,36 @@
 <ion-header>
-
   <ion-navbar color="dark">
     <ion-title>Add Coin</ion-title>
+    <ion-buttons end>
+      <button ion-button type="submit"
+              form="holding-form"
+              [disabled]="!form.valid">
+        Save
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-
-  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
-
-  <ion-list>
-    <button ion-item *ngFor="let listing of listings" detail>
-      {{ listing.name }} : {{ listing.symbol }}
-    </button>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>{{ listing.name }} : {{ listing.symbol }}</ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <form id="holding-form" [formGroup]="form" (submit)="saveCoin()" novalidate>
+      <ion-item>
+        <ion-label stacked>Amount</ion-label>
+        <ion-input type="number" placeholder="Enter Quantity"
+                   formControlName="amount"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Trade Price</ion-label>
+        <ion-input type="number" [value]="quote?.quotes.BTC.price | number: '1.0-8'"
+                   placeholder="Enter Price"
+                   formControlName="price"></ion-input>
+      </ion-item>
+      </form>
+    </ion-list>
+  </ion-card>
 
 </ion-content>
