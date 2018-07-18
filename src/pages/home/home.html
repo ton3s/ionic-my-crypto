@@ -27,7 +27,11 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-list *ngIf="holdings.length > 0">
+  <ion-refresher (ionRefresh)="refreshHoldings($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
     <ion-card *ngFor="let holding of holdings">
       <ion-item-sliding>
         <button ion-item detail-none>
@@ -56,13 +60,12 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-card>
-  </ion-list>
 
-  <ion-card *ngIf="holdings.length === 0" (click)="addCoin()">
-    <ion-card-content class="add-coin">
-      <ion-icon class="add-coin-icon" name="add-circle-outline"></ion-icon>
-      <div>Add Coins To Track</div>
-    </ion-card-content>
-  </ion-card>
+    <ion-card (click)="addCoin()" class="add-coin">
+        <ion-icon class="add-coin-icon" name="add-circle-outline"></ion-icon>
+        <div>Add Coin</div>
+    </ion-card>
+
+  </ion-list>
 
 </ion-content>

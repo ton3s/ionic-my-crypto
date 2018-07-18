@@ -33,24 +33,25 @@ export class HoldingsProvider {
     });
   }
 
-  loadHoldings() {
+  loadHoldings(refresher?) {
     return new Promise((resolve, reject) => {
       this.storage.get('holdings').then(holdings => {
         if (holdings !== null) {
           this.holdings = holdings;
-          this.fetchPrices().then(holdings => resolve(holdings)).catch(reject);
+          this.fetchPrices(refresher).then(holdings => resolve(holdings)).catch(reject);
         }
       }).catch(reject);
     })
   }
 
-  fetchPrices(): Promise<IHolding[]> {
+  fetchPrices(refresher?): Promise<IHolding[]> {
     return new Promise((resolve, reject) => {
       this.quoteProvider.getQuotes(this.holdings)
         .then(quotes => {
           quotes.forEach((quote: IQuote, index) => {
             this.holdings[index].quote = quote;
           });
+          if (refresher) setTimeout(() => refresher.complete(), 500);
           resolve(this.holdings);
         })
         .catch(reject);

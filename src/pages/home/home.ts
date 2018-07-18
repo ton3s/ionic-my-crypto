@@ -20,8 +20,7 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    console.log("ionViewDidEnter");
-    this.holdingsProvider.loadHoldings().then((holdings: IHolding[]) => this.holdings = holdings);
+    this.loadHoldings();
   }
 
   toggleDisplay() {
@@ -42,6 +41,14 @@ export class HomePage {
 
   deleteCoin(holding: IHolding) {
     this.holdingsProvider.removeHolding(holding).then((holdings: IHolding[]) => this.holdings = holdings);
+  }
+
+  loadHoldings(refresher?) {
+    this.holdingsProvider.loadHoldings(refresher).then((holdings: IHolding[]) => this.holdings = holdings);
+  }
+
+  refreshHoldings(refresher) {
+    this.loadHoldings(refresher);
   }
 
 }
