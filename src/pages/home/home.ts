@@ -4,6 +4,7 @@ import {QuoteProvider} from "../../providers/quote/quote.provider";
 import {HoldingsProvider} from "../../providers/holdings/holdings.provider";
 import {IQuote} from "../../providers/quote/quote.interface";
 import {IHolding} from "../../providers/holdings/holdings.interface";
+import {UtilityProvider} from "../../providers/utility/utility.provider";
 
 @Component({
   selector: 'page-home',
@@ -16,7 +17,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               public holdingsProvider: HoldingsProvider,
-              public quoteProvider: QuoteProvider) {
+              public quoteProvider: QuoteProvider,
+              public utilityProvider: UtilityProvider) {
   }
 
   ionViewDidEnter() {
@@ -44,7 +46,11 @@ export class HomePage {
   }
 
   loadHoldings(refresher?) {
-    this.holdingsProvider.loadHoldings(refresher).then((holdings: IHolding[]) => this.holdings = holdings);
+    this.utilityProvider.displayLoading();
+    this.holdingsProvider.loadHoldings(refresher).then((holdings: IHolding[]) => {
+      this.holdings = holdings;
+      this.utilityProvider.dismissLoading();
+    }).catch(_ => this.utilityProvider.dismissLoading());
   }
 
   refreshHoldings(refresher) {

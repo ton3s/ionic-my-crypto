@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {UtilityProvider} from "../../providers/utility/utility.provider";
-import {IListing, IQuote} from "../../providers/quote/quote.interface";
+import {IListing} from "../../providers/quote/quote.interface";
 import {QuoteProvider} from "../../providers/quote/quote.provider";
-import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -40,7 +40,6 @@ export class SelectCoinPage {
   }
 
   backToHomePage() {
-    this.navCtrl.setRoot(HomePage);
-    this.navCtrl.popToRoot();
+    this.navCtrl.setRoot(TabsPage).then(() => this.navCtrl.popToRoot());
   }
 }

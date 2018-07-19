@@ -6,6 +6,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {IonicStorageModule} from '@ionic/storage';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from '@angular/forms';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 // Pages.
 import {MyApp} from './app.component';
@@ -54,6 +55,7 @@ import {firebaseConfig} from './firebase.config';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuoteProvider,
     HoldingsProvider,

@@ -6,8 +6,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HoldingsProvider} from "../../providers/holdings/holdings.provider";
 import {default as swal} from 'sweetalert2';
 import {UtilityProvider} from "../../providers/utility/utility.provider";
-import {HomePage} from "../home/home";
 import {IHolding} from "../../providers/holdings/holdings.interface";
+import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -73,7 +73,7 @@ export class AddHoldingPage {
   }
 
   backToHomePage() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(TabsPage);
     this.navCtrl.popToRoot();
   }
 
