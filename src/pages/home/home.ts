@@ -22,7 +22,7 @@ export class HomePage {
               public utilityProvider: UtilityProvider) {
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.loadHoldings();
   }
 
@@ -84,6 +84,10 @@ export class HomePage {
     }).then((result) => {
       if (result.value) this.removeCoin(holding);
     }).catch(console.log);
+  }
+
+  coinInfo(holding: IHolding) {
+    this.navCtrl.push('CoinInfoPage', {holding});
   }
 
 }

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Coin Info</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      {{ holding?.quote.name }} : {{ holding?.symbol }}
+      <img class="coin-logo" *ngIf="holding" [src]="getIconImage(holding.id)" item-end>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+
+    <ion-item class="coin-attrib">
+      Rank
+      <div item-end>{{ holding?.quote.rank }}</div>
+    </ion-item>
+
+    <ion-item class="coin-attrib">
+      Price (USD)
+      <div item-end>{{ holding?.quote.quotes.USD.price | currency }}
+        <span [style.color]="(holding?.quote.quotes.USD.percent_change_24h > 0 ? 'green' : 'red')">({{ holding?.quote.quotes.USD.percent_change_24h }}%)</span>
+      </div>
+    </ion-item>
+
+    <ion-item class="coin-attrib" *ngIf="holding?.symbol !== 'BTC'">
+      Price (BTC)
+      <div item-end>{{ holding?.quote.quotes.BTC.price | number: "1.0-8" }}
+        <span [style.color]="(holding?.quote.quotes.BTC.percent_change_24h > 0 ? 'green' : 'red')">({{ holding?.quote.quotes.BTC.percent_change_24h }}%)</span>
+      </div>
+    </ion-item>
+
+    <ion-item class="coin-attrib">
+      Market Cap
+      <div item-end>{{ holding?.quote.quotes.USD.market_cap | currency }}</div>
+    </ion-item>
+
+    <ion-item class="coin-attrib">
+      Volume (24h)
+      <div item-end>{{ holding?.quote.quotes.USD.volume_24h | currency }}</div>
+    </ion-item>
+
+    <ion-item class="coin-attrib">
+      Circulating Supply
+      <div item-end>{{ holding?.quote.circulating_supply | number }} {{ holding?.symbol }}</div>
+    </ion-item>
+
+    <ion-item class="coin-attrib" *ngIf="holding?.quote.total_supply">
+      Total Supply
+      <div item-end>{{ holding?.quote.total_supply | number }} {{ holding?.symbol }}</div>
+    </ion-item>
+
+    <ion-item class="coin-attrib" *ngIf="holding?.quote.max_supply">
+      Max Supply
+      <div item-end>{{ holding?.quote.max_supply | number }} {{ holding?.symbol }}</div>
+    </ion-item>
+
+  </ion-card>
+
+
+</ion-content>
