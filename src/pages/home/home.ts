@@ -15,6 +15,7 @@ export class HomePage {
 
   holdings: IHolding[] = [];
   isDisplayFiat: boolean = false;
+  refreshOnLoad: boolean = true;
 
   constructor(public navCtrl: NavController,
               public holdingsProvider: HoldingsProvider,
@@ -22,8 +23,8 @@ export class HomePage {
               public utilityProvider: UtilityProvider) {
   }
 
-  ionViewDidLoad() {
-    this.loadHoldings();
+  ionViewDidEnter() {
+    if (this.refreshOnLoad) this.loadHoldings();
   }
 
   toggleDisplay() {
@@ -39,10 +40,12 @@ export class HomePage {
   }
 
   addCoin() {
+    this.refreshOnLoad = true;
     this.navCtrl.push('SelectCoinPage');
   }
 
   editCoin(holding: IHolding, index: number, slidingItem: ItemSliding) {
+    this.refreshOnLoad = true;
     slidingItem.close();
     this.navCtrl.push('EditHoldingPage', {holding, index});
   }
@@ -87,6 +90,7 @@ export class HomePage {
   }
 
   coinInfo(holding: IHolding) {
+    this.refreshOnLoad = false;
     this.navCtrl.push('CoinInfoPage', {holding});
   }
 

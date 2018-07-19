@@ -45,6 +45,9 @@ export class HoldingsProvider {
           this.holdings = holdings;
           this.fetchPrices(refresher).then(holdings => resolve(holdings)).catch(reject);
         }
+        else {
+          resolve([]);
+        }
       }).catch(reject);
     })
   }
