@@ -44,8 +44,7 @@
             currency }})
           </p>
           <p class="coin-description" *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'">
-            {{ holding.amount }} {{ holding.quote.symbol }} (
-            <ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>
+            {{ holding.amount }} {{ holding.quote.symbol }} (<ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>
             {{ holding.quote.quotes.BTC.price * holding.amount | number: "1.0-2" }})
           </p>
           <span *ngIf="isDisplayFiat || holding.symbol === 'BTC'" item-end>{{ holding.quote.quotes.USD.price | currency }}</span>

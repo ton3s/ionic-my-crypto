@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 // Pages.
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
+import {TabsPage} from '../pages/tabs/tabs';
 
 // Providers
 import {QuoteProvider} from '../providers/quote/quote.provider';
@@ -27,7 +28,8 @@ import {firebaseConfig} from './firebase.config';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import {firebaseConfig} from './firebase.config';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    TabsPage
   ],
   providers: [
     StatusBar,
