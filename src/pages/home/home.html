@@ -32,8 +32,8 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-card *ngFor="let holding of holdings">
-      <ion-item-sliding>
+    <ion-card *ngFor="let holding of holdings; let i = index">
+      <ion-item-sliding #slidingItem>
         <button ion-item detail-none>
           <ion-avatar item-start>
             <img [src]="getIconImage(holding)">
@@ -52,9 +52,13 @@
                                                                                       name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price | number: "1.0-8" }}</span>
         </button>
         <ion-item-options side="right">
-          <button ion-button color="danger" (click)="deleteCoin(holding)">
+          <button ion-button color="danger" (click)="promptRemoveCoin(holding, i, slidingItem)">
             <ion-icon name="trash"></ion-icon>
             Remove
+          </button>
+          <button ion-button color="secondary" (click)="editCoin(holding, i, slidingItem)">
+            <ion-icon name="build"></ion-icon>
+            Edit
           </button>
         </ion-item-options>
       </ion-item-sliding>

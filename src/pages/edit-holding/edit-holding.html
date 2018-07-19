@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Edit Coin</ion-title>
+    <ion-buttons end>
+      <button ion-button type="submit"
+              form="holding-form"
+              [disabled]="!form.valid">
+        Save
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      {{ holding?.quote.name }} : {{ holding?.symbol }}
+      <img class="coin-logo" *ngIf="holding" [src]="getIconImage(holding.id)" item-end>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <form id="holding-form" [formGroup]="form" (submit)="saveCoin()" novalidate>
+        <ion-item>
+          <ion-label stacked>Amount</ion-label>
+          <ion-input type="number" placeholder="Enter Quantity"
+                     formControlName="amount"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Trade Price
+            <ion-icon class="btc-icon-small" name="logo-bitcoin"></ion-icon>
+          </ion-label>
+          <ion-input type="number"
+                     placeholder="Enter Price"
+                     formControlName="price"></ion-input>
+        </ion-item>
+      </form>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

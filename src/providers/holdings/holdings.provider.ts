@@ -25,6 +25,11 @@ export class HoldingsProvider {
     return this.fetchPrices().then(holdings => this.saveHoldings(holdings));
   }
 
+  editHolding(holding: IHolding, index: number): Promise<IHolding[]> {
+    this.holdings[index] = holding;
+    return this.fetchPrices().then(holdings => this.saveHoldings(holdings));
+  }
+
   saveHoldings(holdings: IHolding[]): Promise<IHolding[]> {
     return new Promise((resolve, reject) => {
       this.storage.set('holdings', holdings)
