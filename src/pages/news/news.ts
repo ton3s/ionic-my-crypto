@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NewsProvider} from "../../providers/news/news.provider";
 
 @IonicPage()
 @Component({
@@ -8,11 +9,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  news = [];
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public newsProvider: NewsProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewsPage');
+    this.newsProvider.getNews().then(news => this.news = news);
   }
 
 }

@@ -16,6 +16,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {QuoteProvider} from '../providers/quote/quote.provider';
 import {HoldingsProvider} from '../providers/holdings/holdings.provider';
 import {UtilityProvider} from '../providers/utility/utility.provider';
+import {NewsProvider} from '../providers/news/news.provider';
 
 // Firebase
 import {AngularFireModule} from 'angularfire2';
@@ -56,7 +57,8 @@ import {firebaseConfig} from './firebase.config';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QuoteProvider,
     HoldingsProvider,
-    UtilityProvider
+    UtilityProvider,
+    NewsProvider
   ]
 })
 export class AppModule {

@@ -5,6 +5,17 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let article of news" text-wrap>
+      <ion-thumbnail item-start>
+        <img [src]="article.imageurl">
+      </ion-thumbnail>
+      <h4 class="news-title">{{ article.title }}</h4>
+      <p class="news-body">{{ article.body.substr(0, 130) }}...</p>
+      <a ion-button clear item-end [href]="article.url">View</a>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
