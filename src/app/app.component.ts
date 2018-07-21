@@ -4,6 +4,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {TabsPage} from '../pages/tabs/tabs';
+import {enableProdMode} from '@angular/core';
+enableProdMode();
 
 @Component({
   templateUrl: 'app.html'

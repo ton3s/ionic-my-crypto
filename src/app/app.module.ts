@@ -7,6 +7,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from '@angular/forms';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import 'rxjs/add/operator/toPromise';
 
 // Pages.
 import {MyApp} from './app.component';
