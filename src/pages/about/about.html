@@ -4,13 +4,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="background">
 
-  <ion-card>
+  <ion-card class="animated fadeInDown">
     <ion-row>
       <ion-col col-2></ion-col>
       <ion-col col-8>
-        <img src="assets/imgs/tones.jpg">
+        <img class="animated pulse infinite" src="assets/imgs/tones.jpg">
       </ion-col>
       <ion-col col-2></ion-col>
     </ion-row>
@@ -20,20 +20,29 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-      <ion-item>
-        <i class="fa fa-github social-icon"></i>
-        <div item-end>
-          <a href="https://github.com/kimonio/ionic-my-crypto">@kimonio/ionic-my-crypto</a>
-        </div>
-      </ion-item>
+  <ion-card class="animated flipInX" (click)="openBrowser('https://github.com/kimonio/ionic-quotes')">
+    <ion-item>
+      <i class="fa fa-github social-icon"></i>
+      <div item-end class="contact-info">
+        @kimonio/ionic-quotes
+      </div>
+    </ion-item>
   </ion-card>
 
-  <ion-card>
+  <ion-card class="animated flipInX" (click)="openBrowser('https://www.linkedin.com/in/antoniocunanan/')">
     <ion-item>
       <i class="fa fa-linkedin social-icon"></i>
-      <div item-end>
-        <a href="https://www.linkedin.com/in/antoniocunanan/">@antoniocunanan</a>
+      <div item-end class="contact-info">
+        @antoniocunanan
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="animated flipInX">
+    <ion-item>
+      <ion-icon class="social-icon" name="md-mail"></ion-icon>
+      <div item-end class="contact-info">
+        <a href="mailto:antonio.cunanan@gmail.com">antonio.cunanan@gmail.com</a>
       </div>
     </ion-item>
   </ion-card>
