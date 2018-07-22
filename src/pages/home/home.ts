@@ -46,7 +46,6 @@ export class HomePage {
         }
       })
     }, 500);
-
   }
 
   toggleDisplay() {

@@ -1,26 +1,28 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar color="light">
     <ion-title>News</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content>
+<ion-content class="background">
 
   <ion-refresher (ionRefresh)="refreshHoldings($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-list>
-    <button ion-item *ngFor="let article of news" text-wrap
-            class="animated flipInX"
-            (click)="utilityProvider.openBrowser(article.url)">
-      <ion-thumbnail item-start>
-        <img [src]="article.imageurl">
-      </ion-thumbnail>
-      <h4 class="news-title">{{ article.title }}</h4>
-      <p class="news-body">{{ articleDescription(article.body) }}</p>
-    </button>
+    <ion-card *ngFor="let article of news">
+      <button ion-item  text-wrap
+              class="animated flipInX"
+              (click)="utilityProvider.openBrowser(article.url)">
+        <ion-thumbnail item-start>
+          <img [src]="article.imageurl">
+        </ion-thumbnail>
+        <h4 class="news-title">{{ article.title }}</h4>
+        <p class="news-body">{{ articleDescription(article.body) }}</p>
+      </button>
+    </ion-card>
   </ion-list>
 
 </ion-content>

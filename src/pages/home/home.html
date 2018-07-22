@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar color="light">
     <ion-title>
       My Crypto
     </ion-title>
     <ion-buttons>
-      <button ion-button icon-only (click)="toggleDisplay()">
+      <button ion-button icon-only (click)="toggleDisplay()" color="dark">
         <ion-icon *ngIf="isDisplayFiat" name="logo-usd"></ion-icon>
         <ion-icon *ngIf="!isDisplayFiat" name="logo-bitcoin"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addCoin()">
+      <button ion-button icon-only (click)="addCoin()" color="dark">
         <ion-icon name="add-circle-outline"></ion-icon>
       </button>
     </ion-buttons>

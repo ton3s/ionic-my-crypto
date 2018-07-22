@@ -1,5 +1,9 @@
 page-home {
 
+  .background {
+    background: linear-gradient(to bottom right, #FDC830, #F37335);
+  }
+
   .main-card {
     text-align: center;
   }
@@ -22,10 +26,15 @@ page-home {
   }
 
   .add-coin {
+    background-color: rgba(0, 0, 0, 0.0);
     text-align: center;
     font-size: 12px;
     padding: 7px;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);
+  }
+
+  .add-coin-items {
+    color: white;
   }
 
   .add-coin-icon {

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="dark">
+  <ion-navbar color="light">
     <ion-title>Search Coin</ion-title>
   </ion-navbar>
   <ion-searchbar class="search-bar" [(ngModel)]="searchTerm"
@@ -7,7 +7,7 @@
                  (ionInput)="setFilteredItems()"></ion-searchbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="background">
   <ion-list>
     <button ion-item *ngFor="let listing of listings" (click)="addCoinDetails(listing)">
       {{ listing.name }} : {{ listing.symbol }}
