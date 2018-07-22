@@ -16,15 +16,15 @@
 // automatically applied to the <body> element in the app.
 
 a.tab-button[aria-selected=true]:nth-of-type(1) {
-  color: #ffad33;
+  color: #283E51;
   .tab-button-icon {
-    color: #ffad33;
+    color: #283E51;
   }
 }
 a.tab-button[aria-selected=true]:nth-of-type(2) {
-  color: #4e54c8;
+  color: #F37335;
   .tab-button-icon {
-    color: #4e54c8;
+    color: #F37335;
   }
 }
 a.tab-button[aria-selected=true]:nth-of-type(3) {
