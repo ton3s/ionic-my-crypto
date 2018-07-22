@@ -21,8 +21,9 @@
 
   <ion-card (click)="toggleDisplay()">
     <ion-card-content class="main-card">
-      <div class="main-card-title">{{ getTotalBalance("USD") | currency }}
-        <p>{{ getTotalBalance("BTC") | number: "1.0-2" }} BTC</p>
+      <div class="main-card-title">
+        <div id="total-balance-USD">$0.0</div>
+        <p id="total-balance-BTC">0 BTC</p>
       </div>
     </ion-card-content>
   </ion-card>
@@ -32,7 +33,7 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-card *ngFor="let holding of holdings; let i = index">
+    <ion-card *ngFor="let holding of holdings; let i = index" class="animated flipInX">
       <ion-item-sliding #slidingItem>
         <button ion-item detail-none (click)="coinInfo(holding)">
           <ion-avatar item-start>
@@ -51,7 +52,8 @@
             {{ holding.quote.quotes.USD.price | currency }}
           </span>
           <span class="coin-price" *ngIf="!isDisplayFiat && holding.symbol !== 'BTC'" item-end>
-            <ion-icon class="btc-icon-large" name="logo-bitcoin"></ion-icon>{{ holding.quote.quotes.BTC.price | number: "1.0-8" }}
+            <ion-icon class="btc-icon-large" name="logo-bitcoin"></ion-icon>
+              {{ holding.quote.quotes.BTC.price | number: "1.0-8" }}
           </span>
         </button>
         <ion-item-options side="right">

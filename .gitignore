@@ -35,3 +35,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 src/app/firebase.config.ts
+src/assets/lib/gsap/SplitText.min.js
+src/assets/lib/gsap/ScrambleTextPlugin.min.js

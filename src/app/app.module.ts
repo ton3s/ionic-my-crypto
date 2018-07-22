@@ -27,6 +27,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 
 // Firebase Configuration
 import {firebaseConfig} from './firebase.config';
+import {CurrencyPipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {firebaseConfig} from './firebase.config';
     QuoteProvider,
     HoldingsProvider,
     UtilityProvider,
-    NewsProvider
+    NewsProvider,
+    CurrencyPipe
   ]
 })
 export class AppModule {
