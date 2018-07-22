@@ -12,9 +12,8 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-card *ngFor="let article of news">
+    <ion-card *ngFor="let article of news" class="animated flipInX">
       <button ion-item  text-wrap
-              class="animated flipInX"
               (click)="utilityProvider.openBrowser(article.url)">
         <ion-thumbnail item-start>
           <img [src]="article.imageurl">
