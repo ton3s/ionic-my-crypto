@@ -5,7 +5,7 @@ Cryptocurrency Portfolio Tracker and Crypto Related News.
 * Track 1600+ different cryptocurrencies and access the latest crypto related news with data being fed by [CoinMarketCap API](https://coinmarketcap.com)
 * Uses local storage so your data is never shared with the public.
 * Animations by [Animate.css](https://daneden.github.io/animate.css/) and [GreenSock GSAP](https://greensock.com/gsap) libraries.
-* Developed in[ [Typescript](https://www.typescriptlang.org/) using [Angular](https://angular.io/) & [Ionic 3](https://ionicframework.com/docs/) frameworks.
+* Developed in [Typescript](https://www.typescriptlang.org/) using [Angular](https://angular.io/) & [Ionic 3](https://ionicframework.com/docs/) frameworks.
 
 ![Imgur](https://i.imgur.com/GAKkcNE.gif)
 
